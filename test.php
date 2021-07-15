@@ -23,8 +23,11 @@ if(isset($options['insert'])){ //Вставка: php test.php --insert='{"d_crea
         $data_select = (!isJson($string_select)) ? array() : json_decode($string_select,true);
 
 
-        if(!isJson($string_ins)) die("Входящая строка не являється валидной");
+        if(!isJson($string_ins)) die('Входяща стрічка не є валідним json. Приклад: {"d_create": "2021-01-01","payload": "message 32432"}');
         $data_ins = json_decode($string_ins,true);
+
+        if(strlen($data_ins['payload'])>250) die("Довжина входящої стрічки не повина перевищувати 250 символів");
+        if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$data_ins['d_create'])) die("Дата повинна бути в форматі 2012-09-12");
 
         $data_select[]=$data_ins;
 
