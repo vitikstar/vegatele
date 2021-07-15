@@ -13,7 +13,7 @@ $options = getopt($shortopts, $longopts);
 
 if(!file_exists(FILE_DATA_MESSAGE)) $fp = fopen(FILE_DATA_MESSAGE, "w");
 
-if(isset($options['list'])){ //Просмотр всего списка: php -f test.php --list
+if(isset($options['list'])){ //Просмотр всего списка: php  test.php --list
         getItem();
 }
 
@@ -31,7 +31,7 @@ if(isset($options['insert'])){ //Вставка: php test.php --insert='{"d_crea
         file_put_contents(FILE_DATA_MESSAGE, json_encode($data_select));
 }
 
-if(isset($options['select']) and (int)$options['select']>0){ //Выборка по id: php -f test.php --select="1"
+if(isset($options['select']) and (int)$options['select']>0){ //Выборка по id: php  test.php --select="1"
         $id = (int)$options['select'];
         getItem($id);
 }
